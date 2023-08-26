@@ -2,9 +2,10 @@ import React from "react";
 import { ExpItem } from "./ExpItem";
 
 export const Experience = ({ experienceArray }) => {
+  const arr = [...experienceArray].reverse();
   return (
     <div>
-      {experienceArray.map((item) => (
+      {arr.map((item) => (
         <ExpItem key={item.companyName} {...item} />
       ))}
     </div>

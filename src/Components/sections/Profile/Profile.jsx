@@ -1,12 +1,11 @@
-import img from "../../../assets/img.jpg";
 import { MdOutlineAlternateEmail } from "react-icons/md";
 import { FaPhoneAlt } from "react-icons/fa";
 import { BiLogoLinkedin } from "react-icons/bi";
 import { ImSkype } from "react-icons/im";
 import { HiHome } from "react-icons/hi";
 import { useRoute } from "wouter";
-import { useEffect } from "react";
-import axios from "axios";
+import { useState } from "react";
+import { FadeLoader } from "react-spinners";
 export const Profile = ({
   lastName,
   firstName,
@@ -22,21 +21,29 @@ export const Profile = ({
   profileImage,
 }) => {
   const [, params] = useRoute("/item/:id");
-
-
+  const [loading, setLoading] = useState(true);
 
   return (
     <div className="h-[565px] flex-col flex ">
       <div>
         <div className="mt-3 overflow-hidden h-[235px] w-full">
-          <img
-          loading="lazy"
-            className={`border-[2px] ${
-              params?.id !== "profile" && "grayscale"
-            } transition-all duration-1000 border-[#C0C0C0] object-cover object-center w-full h-full`}
-            src={profileImage}
-            alt=""
-          />
+          {loading && (
+            <div className="h-full  bg-[#a1a1a14d] w-full flex justify-center items-center">
+              <FadeLoader color="#a1a1a1d5" />
+            </div>
+          )}
+          <>
+            {" "}
+            <img
+              loading="lazy"
+              className={`border-[2px] ${
+                params?.id !== "profile" && "grayscale"
+              } transition-all duration-1000 border-[#C0C0C0] object-cover object-center w-full h-full`}
+              src={profileImage}
+              onLoad={() => setLoading(false)}
+              alt=""
+            />
+          </>
         </div>
         <div className="text-[18px] mt-4 flex w-fit mx-auto items-center">
           <span className="font-bold">
@@ -69,23 +76,19 @@ export const Profile = ({
             <i className="text-[20px] opacity-40">
               <BiLogoLinkedin />
             </i>
-            <span className="text-[15px] ml-6">
-              {linkedin}
-            </span>
+            <span className="text-[15px] ml-6">{linkedin}</span>
           </li>
           <li className="flex items-center ">
             <i className="text-[20px] opacity-40">
               <ImSkype />
             </i>
-            <span  className="text-[15px] ml-6">
-              {skype}
-            </span>
+            <span className="text-[15px] ml-6">{skype}</span>
           </li>
           <li className="flex  items-center ">
             <i className="text-[20px] opacity-40">
               <HiHome />
             </i>
-            <span  className="text-[15px] ml-6">
+            <span className="text-[15px] ml-6">
               <span>IRAN, </span>
               <span className=" opacity-40">{province}, </span>
               {city}

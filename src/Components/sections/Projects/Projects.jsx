@@ -25,11 +25,6 @@ export const Projects = ({ projectsArray }) => {
             <ProjectItem {...item} />
           </SwiperSlide>
         ))}
-        {projectsArray.map((item) => (
-          <SwiperSlide key={item.projectName}>
-            <ProjectItem {...item} />
-          </SwiperSlide>
-        ))}
       </Swiper>
     </div>
   );

@@ -10,8 +10,8 @@ export const ExpItem = ({
     <div className="mt-2">
       <ul className=" underline-offset-2 flex justify-between items-center underline decoration-slice">
         <li className="text-[17px] font-bold">{companyName}</li>
-        <li className=" underline decoration-red-p text-[12px] text-red-p">
-          {experience.count} {experience.type}
+        <li className=" underline decoration-red-p pr-1 text-[10px] text-red-p">
+         {experience}
         </li>
       </ul>
       <p className=" text-gray-p mt-2 text-[14px] leading-[17px]">
