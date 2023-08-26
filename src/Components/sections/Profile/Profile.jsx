@@ -76,7 +76,7 @@ export const Profile = ({
             <i className="text-[20px] opacity-40">
               <BiLogoLinkedin />
             </i>
-            <span className="text-[15px] ml-6">{linkedin}</span>
+            <a target="_blank" href={linkedin} className="text-[15px] ml-6">{linkedin}</a>
           </li>
           <li className="flex items-center ">
             <i className="text-[20px] opacity-40">
