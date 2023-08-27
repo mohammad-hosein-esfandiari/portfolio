@@ -11,32 +11,34 @@ function App() {
   const [loading, setLoading] = useState(false);
   const portfolioConnectionsRef = collection(db, "portfolio");
   const getSkills = async () => {
-    setLoading(true)
+    setLoading(true);
     try {
       const data = await getDocs(portfolioConnectionsRef);
       const latestData = data.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
       }));
-      setData(latestData)
-      setLoading(false)
+      if (latestData.length) {
+        setData(latestData);
+        setLoading(false);
+      } else {
+        alert("Plz turn on your VPN");
+      }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
+      console.log("sdvsdvsdvdsv");
     }
   };
   useEffect(() => {
     getSkills();
   }, []);
 
-
-  if(loading) return <Loading/>
-
-
+  if (loading) return <Loading />;
 
   return (
     <>
       <Canvas dpr={[1, 1.5]} camera={{ fov: 70, position: [0, 0.5, 5] }}>
-        <GalleryHolder data={data}/>
+        <GalleryHolder data={data} />
       </Canvas>
     </>
   );
